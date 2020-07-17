@@ -11,6 +11,7 @@
 
 \documentclass[xcolor=dvipsnames]{beamer}
 
+
 \usetheme{Warsaw}
 \usecolortheme{spruce}
 
@@ -36,27 +37,41 @@
 \makeatother
 
 
-\usepackage{calc, fontawesome, lmodern}
+% Tobias
+
+\usepackage{amsfonts, lmodern, mathtools}
 
 \usepackage[main=english, ngerman]{babel}
+\usepackage[hang]{caption}
+
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 
+% \usepackage[hyphens]{url}
+% \usepackage[hidelinks]{hyperref}
+% \usepackage[colorlinks]{hyperref}
+% \usepackage[colorlinks, pagebackref=true]{hyperref}
+% \usepackage[dvipsnames]{xcolor}
+
 \usepackage{tikz}
-\usetikzlibrary{arrows, positioning, shapes, shapes.multipart, spy}
+\usetikzlibrary{arrows, calc, external, fit, positioning, shapes, spy}
+\tikzexternalize[prefix={figs/_TikZ/}]
 
 \usepackage{pgfplots}
 \pgfplotsset{compat=newest}
+\usepgfplotslibrary{colorbrewer}
 
-\usepackage[hang]{caption}
-
-\usepackage{array}
+\usepackage{
+	array,
+	multirow,
+	xfrac
+}
 
 \usepackage[font=scriptsize]{subfig}
 
 \usepackage[export]{adjustbox}
 
-\usepackage{graphicx}
+\usepackage{graphicx, graphbox}
 \graphicspath{{figs/}, {title/}}
 
 \renewcommand*{\arraystretch}{1.33}
@@ -67,6 +82,8 @@
 \newcolumntype{N}[1]{>{ \raggedleft \arraybackslash }m{#1}}
 \newcolumntype{B}[1]{>{ \centering  \arraybackslash }b{#1}}
 \newcolumntype{C}[1]{>{ \raggedleft \arraybackslash }b{#1}}
+
+
 
 
 \title[Short Title]{\normalsize Long Title}
@@ -124,9 +141,9 @@
 \end{frame}
 
 
-\section{Fundamentals}
+\section{Fundamentals and methods}
 
-\begin{frame}{Fundamentals}
+\begin{frame}{Fundamentals and methods}
 	\begin{itemize}
 		\item TODO
 		\item TODO
@@ -154,9 +171,9 @@
 \end{frame}
 
 
-\section{Summary and outlook}
+\section{Conclusion and outlook}
 
-\begin{frame}{Summary and outlook}
+\begin{frame}{Conclusion and outlook}
 	\begin{itemize}
 		\item TODO
 		\item TODO
@@ -188,8 +205,6 @@
 		\item TODO
 	\end{itemize}
 \end{frame}
-
-
 
 
 \end{document}
