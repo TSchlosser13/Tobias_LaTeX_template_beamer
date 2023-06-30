@@ -1,0 +1,208 @@
+%===============================================================================
+% Tobias_LaTeX_template_beamer
+%===============================================================================
+% v1.0 - 24.11.2018
+%
+% Copyright (c) 2018 Tobias Schlosser (tobias@tobias-schlosser.net)
+%===============================================================================
+
+
+
+
+\documentclass[xcolor=dvipsnames]{beamer}
+
+
+\usetheme{Warsaw}
+\usecolortheme{spruce}
+
+% \beamertemplatenavigationsymbolsempty
+\setbeamercolor{section in head/foot}{fg=white}
+\setbeamercolor{subsection in head/foot}{fg=black}
+\setbeamercolor{structure}{fg=black}
+\setbeamercolor{title}{fg=black}
+\setbeamerfont{caption}{size=\scriptsize}
+\setbeamerfont{footnote}{size=\scriptsize}
+\setbeamertemplate{bibliography item}{\insertbiblabel}
+\setbeamertemplate{caption}[numbered]
+\setbeamertemplate{itemize item}[circle]
+\setbeamertemplate{page number in head/foot}[framenumber]
+\setbeamertemplate{section in head/foot shaded}[default][33]
+\setbeamertemplate{subsection in head/foot shaded}[default][33]
+\setbeamertemplate{section in toc}[sections numbered]
+
+% https://tex.stackexchange.com/questions/51452/reduce-spacing-in-table-of-contents-beamer
+\usepackage{etoolbox}
+\makeatletter
+	\patchcmd{\beamer@sectionintoc}{\vskip 1.5em}{\vskip 0.5em}{}{}
+\makeatother
+
+
+% Tobias
+
+\usepackage{amsfonts, lmodern, mathtools, microtype}
+
+\usepackage[main=english, ngerman]{babel}
+\usepackage[hang]{caption}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+% \usepackage[hyphens]{url}
+% \usepackage[hidelinks]{hyperref}
+% \usepackage[colorlinks]{hyperref}
+% \usepackage[colorlinks, pagebackref=true]{hyperref}
+% \usepackage[dvipsnames]{xcolor}
+
+\usepackage{tikz}
+\usetikzlibrary{arrows, calc, external, fit, positioning, shapes, spy}
+\tikzexternalize[prefix={figs/_TikZ/}]
+
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+\usepgfplotslibrary{colorbrewer}
+
+\usepackage{
+	array,
+	multirow,
+	xfrac
+}
+
+\usepackage[font=scriptsize]{subfig}
+
+\usepackage[export]{adjustbox}
+
+\usepackage{graphicx, graphbox}
+\graphicspath{{figs/}, {title/}}
+
+\renewcommand*{\arraystretch}{1.33}
+
+\newcolumntype{P}[1]{>{ \centering  \arraybackslash }p{#1}}
+\newcolumntype{Q}[1]{>{ \raggedleft \arraybackslash }p{#1}}
+\newcolumntype{M}[1]{>{ \centering  \arraybackslash }m{#1}}
+\newcolumntype{N}[1]{>{ \raggedleft \arraybackslash }m{#1}}
+\newcolumntype{B}[1]{>{ \centering  \arraybackslash }b{#1}}
+\newcolumntype{C}[1]{>{ \raggedleft \arraybackslash }b{#1}}
+
+
+
+
+\title[Short Title]{\normalsize Long Title}
+
+% \subtitle{\normalsize Subtitle}
+
+\author[T. Schlosser]{\footnotesize Tobias Schlosser}
+
+\institute{%
+	Junior Professorship of Media Computing, \\
+	% Chemnitz University of Technology, \\
+	% 09107 Chemnitz, Germany, \\
+	Chemnitz University of Technology, 09107 Chemnitz, Germany, \\
+	% \texttt{\tiny \{firstname.lastname\}@informatik.tu-chemnitz.de}
+	\texttt{\tiny \{firstname.lastname\}@cs.tu-chemnitz.de}
+}
+
+\date{\footnotesize Chemnitz, Germany, 24 November 2018}
+
+\titlegraphic{
+	\vspace{-0.5cm}
+	$\vcenter{\hbox{\includegraphics[width=0.33\textwidth]{{TU_Chemnitz_Logo_gruen_RGB}.png}}}$%
+	$\vcenter{\hbox{\includegraphics[width=0.66\textwidth]{{SMWA_ESF_LO_Sachsen_QUER_RGB_RZ-eps-converted-to}.pdf}}}$
+}
+
+
+
+
+\begin{document}
+
+
+\begin{frame}
+	\titlepage
+\end{frame}
+
+\begin{frame}{Table of contents}
+	\tableofcontents[hideallsubsections]
+\end{frame}
+
+
+
+
+\section{Introduction and motivation}
+
+\begin{frame}{Introduction and motivation}
+	TODO \cite{Middleton2005}
+
+	\begin{itemize}
+		\item TODO
+		\item TODO
+	\end{itemize}
+\end{frame}
+
+
+\section{Fundamentals and methods}
+
+\begin{frame}{Fundamentals and methods}
+	\begin{itemize}
+		\item TODO
+		\item TODO
+	\end{itemize}
+\end{frame}
+
+
+\section{Implementation}
+
+\begin{frame}{Implementation}
+	\begin{itemize}
+		\item TODO
+		\item TODO
+	\end{itemize}
+\end{frame}
+
+
+\section{Test results, evaluation, and discussion}
+
+\begin{frame}{Test results, evaluation, and discussion}
+	\begin{itemize}
+		\item TODO
+		\item TODO
+	\end{itemize}
+\end{frame}
+
+
+\section{Conclusion and outlook}
+
+\begin{frame}{Conclusion and outlook}
+	\begin{itemize}
+		\item TODO
+		\item TODO
+	\end{itemize}
+\end{frame}
+
+
+
+
+\part{References and appendix}
+
+
+\section{References}
+
+\begin{frame}[allowframebreaks, t]{References}
+	\footnotesize
+	% \bibliographystyle{alpha}
+	% \bibliographystyle{alphadin}
+	\bibliographystyle{alphadin_Tobias}
+	\bibliography{library}
+\end{frame}
+
+
+\section{Appendix}
+
+\begin{frame}[allowframebreaks]{Appendix}
+	\begin{itemize}
+		\item TODO
+		\item TODO
+	\end{itemize}
+\end{frame}
+
+
+\end{document}
+
