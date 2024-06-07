@@ -1,0 +1,313 @@
+%===============================================================================
+% Tobias_LaTeX_template_beamer
+%===============================================================================
+% v1.0 - 19.04.2024
+%
+% Copyright (c) 2024 Tobias Schlosser (tobias@tobias-schlosser.net)
+%===============================================================================
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Preamble %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% documentclass
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[
+	9pt,
+	xcolor={dvipsnames, table}
+]{beamer}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% beamer settings
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usetheme{Warsaw}
+\usecolortheme{spruce}
+
+\definecolor{ThemeColorTUCGreen}{HTML}{005F50}
+
+\setbeamercolor{palette quaternary}{bg=ThemeColorTUCGreen}
+\setbeamercolor{section in head/foot}{fg=white}
+\setbeamercolor{subsection in head/foot}{fg=black}
+\setbeamercolor{structure}{fg=black}
+\setbeamercolor{title}{fg=black}
+\setbeamerfont{caption}{size=\footnotesize}
+\setbeamerfont{footnote}{size=\footnotesize}
+\setbeamertemplate{bibliography item}{\insertbiblabel}
+\setbeamertemplate{caption}[numbered]
+\setbeamertemplate{enumerate item}[default]
+\setbeamertemplate{itemize item}[circle]
+\setbeamertemplate{page number in head/foot}[framenumber]
+\setbeamertemplate{section in head/foot shaded}[default][33]
+\setbeamertemplate{subsection in head/foot shaded}[default][33]
+\setbeamertemplate{section in toc}[sections numbered]
+\addtobeamertemplate{frametitle}{\vspace{0.1cm}}{}
+\addtobeamertemplate{title}{\vspace{-1cm}}{}
+
+% "Reduce spacing in table of contents (beamer)"
+% https://tex.stackexchange.com/questions/51452/reduce-spacing-in-table-of-contents-beamer
+\usepackage{etoolbox}
+\makeatletter
+	\patchcmd{\beamer@sectionintoc}{\vskip 1.5em}{\vskip 0.5em}{}{}
+\makeatother
+
+% "(Warsaw Theme) How can I put the logo on the top right of each slide?"
+% https://tex.stackexchange.com/questions/207560/warsaw-theme-how-can-i-put-the-logo-on-the-top-right-of-each-slide
+\makeatletter
+\setbeamertemplate{headline}
+{%
+  \leavevmode%
+  \@tempdimb=2.4375ex%
+  \ifnum\beamer@subsectionmax<\beamer@sectionmax%
+    \multiply\@tempdimb by\beamer@sectionmax%
+  \else%
+    \multiply\@tempdimb by\beamer@subsectionmax%
+  \fi%
+  \ifdim\@tempdimb>0pt%
+    \advance\@tempdimb by 1.825ex%
+    \begin{beamercolorbox}[wd=.5\paperwidth,ht=\@tempdimb]{section in head/foot}%
+      \vbox to\@tempdimb{\vfil\insertsectionnavigation{.5\paperwidth}\vfil}%
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.5\paperwidth,ht=\@tempdimb]{subsection in head/foot}%
+      \vbox to\@tempdimb{\vfil\insertsubsectionnavigation{.3\paperwidth}\vfil}%
+      \hfill
+      % \includegraphics[height=\headheight]{{personal/QR_Code_tobias-schlosser.net}.png}
+      \includegraphics[height=\headheight, trim={0 100 0 100}, clip]{{TUC-Logos_20220929_2025/KHS TUC farbig eng}.png}
+    \end{beamercolorbox}%
+  \fi%
+}
+\makeatother
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% usepackages
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{fontawesome, lmodern, microtype}
+
+% \usepackage[main=ngerman, english]{babel}
+\usepackage[main=english, ngerman]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+\usepackage[natbibapa]{apacite}
+\newcommand{\doi}[1]{#1}
+
+\usepackage{tikz}
+\usetikzlibrary{
+	arrows,
+	backgrounds,
+	calc,
+	decorations,
+	calligraphy,
+	fit,
+	positioning,
+	shapes,
+	spy
+}
+
+\usepackage{pgfplots, pgf-pie}
+\pgfplotsset{compat=newest}
+\usepgfplotslibrary{colorbrewer}
+
+% "Reason for multiple bars in Legend entries"
+% https://tex.stackexchange.com/questions/224676/reason-for-multiple-bars-in-legend-entries
+\pgfplotsset{compat=1.11,
+    /pgfplots/ybar legend/.style={
+    /pgfplots/legend image code/.code={%
+       \draw[##1,/tikz/.cd,yshift=-0.25em]
+        (0cm,0cm) rectangle (3pt,0.8em);},
+   },
+}
+
+\usepackage[hang]{caption}
+
+\usepackage{
+	array,
+	diagbox,
+	hhline,
+	makecell
+}
+
+\usepackage[font=scriptsize]{subfig}
+
+\usepackage[export]{adjustbox}
+
+\usepackage{graphicx, graphbox}
+\graphicspath{{figs/}, {title/}}
+
+\usepackage{ccicons}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Miscellaneous
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\renewcommand*{\arraystretch}{1.33}
+
+\newcolumntype{P}[1]{>{ \centering  \arraybackslash }p{#1}}
+\newcolumntype{Q}[1]{>{ \raggedleft \arraybackslash }p{#1}}
+\newcolumntype{M}[1]{>{ \centering  \arraybackslash }m{#1}}
+\newcolumntype{N}[1]{>{ \raggedleft \arraybackslash }m{#1}}
+\newcolumntype{B}[1]{>{ \centering  \arraybackslash }b{#1}}
+\newcolumntype{C}[1]{>{ \raggedleft \arraybackslash }b{#1}}
+
+\definecolor{custom_blue}{HTML}{4F81BD}
+\definecolor{custom_green}{HTML}{9BBB59}
+\definecolor{custom_purple}{HTML}{9F4C7C}
+
+\colorlet{SpyColorBlue}{custom_blue}
+\colorlet{SpyColorGreen}{LimeGreen}
+\colorlet{SpyColorYellow}{yellow}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Preamble %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Title %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title[Short Title]{Long Title}
+
+\subtitle{Subtitle}
+
+\author[T. Schlosser]{Tobias Schlosser}
+
+\institute{
+	\centering
+
+	\begin{tabular}{c|c}
+		\makecell{
+			Junior Professorship of Media Computing, \\
+			Chemnitz University of Technology, 09107 Chemnitz, Germany, \\
+			\texttt{tobias.schlosser@cs.tu-chemnitz.de}
+		}
+		&
+		\makecell{
+			Text
+		}
+	\end{tabular}
+}
+
+\date{Chemnitz, Germany, 19.04.2024}
+
+% "Beamer - specify logo position in title page"
+% https://tex.stackexchange.com/questions/412702/beamer-specify-logo-position-in-title-page
+\titlegraphic{
+	\begin{picture}(0, 0)
+		\put(-160, -10){$\vcenter{\hbox{\includegraphics[width=0.33\textwidth]{{TUC-Logos_20220929_2025/KHS TUC farbig eng}.png}}}$\hfill$\vcenter{\hbox{\includegraphics[width=0.66\textwidth]{{ESF-Logos_20220929/SMWA_ESF_LO_Sachsen_2019_QUER_RGB}.png}}}$}
+	\end{picture}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Title %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+
+
+\begin{document}
+
+
+
+
+
+
+
+
+\begin{frame}
+	\titlepage
+\end{frame}
+
+
+\begin{frame}{Table of Contents}
+	\tableofcontents[hideallsubsections]
+\end{frame}
+
+
+
+
+\section{Introduction and motivation}
+\label{section:introduction}
+
+\begin{frame}{Introduction and motivation}
+	See \cite{schlosser2022improving}.
+
+	\begin{itemize}
+		\item Text
+		\item Text
+	\end{itemize}
+\end{frame}
+
+
+\section{Fundamentals and implementation}
+\label{section:fundamentals}
+
+\begin{frame}{Fundamentals and implementation}
+	Text
+
+	\begin{itemize}
+		\item Text
+		\item Text
+	\end{itemize}
+\end{frame}
+
+
+\section{Test results, evaluation, and discussion}
+\label{section:evaluation}
+
+\begin{frame}{Test results, evaluation, and discussion}
+	Text
+
+	\begin{itemize}
+		\item Text
+		\item Text
+	\end{itemize}
+\end{frame}
+
+
+\section{Conclusion and outlook}
+\label{section:conclusion}
+
+\begin{frame}{Conclusion and outlook}
+	Text
+
+	\begin{itemize}
+		\item Text
+		\item Text
+	\end{itemize}
+\end{frame}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% References
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\part{References}
+
+% \section{References}
+
+\begin{frame}[allowframebreaks, t]{References}
+	% "How to change font size for bibliography?"
+	% https://tex.stackexchange.com/questions/329/how-to-change-font-size-for-bibliography
+	\renewcommand{\bibfont}{\footnotesize}
+
+	\bibliographystyle{apalike}
+	\bibliography{library}
+\end{frame}
+
+
+
+
+
+
+
+
+\end{document}
+
